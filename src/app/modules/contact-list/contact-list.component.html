@@ -1,0 +1,39 @@
+<div class="grid-container">
+    <mat-card>  
+        <!-- Title of an Card -->  
+        <mat-card-title>  
+            Contacts
+            <button mat-button color="primary" class="primary-button pull-right" [routerLink]="['/create']">Add</button>
+        </mat-card-title> 
+        <mat-card-content>
+            <mat-table #table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="{{column.id}}" *ngFor="let column of columnNames">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.value}}</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <span *ngIf="column.id==='action';else noAction">
+                            <span class="material-icons" title="Edit" [routerLink]="['/edit',element['_id']]">
+                                edit
+                            </span>
+                            <span class="material-icons" title="Delete" (click)="delete(element['_id'])">
+                                delete
+                            </span>
+                        </span>
+                        <ng-template #noAction>
+                            {{element[column.id]}}
+                        </ng-template>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [length]=totalRecords [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" (page)="getServerData($event)">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+    <!-- <div>
+        <button mat-button color="primary" class="primary-button" [routerLink]="['/create']">Add</button>
+    </div> -->
+    <div>
+        
+    </div>
+</div>

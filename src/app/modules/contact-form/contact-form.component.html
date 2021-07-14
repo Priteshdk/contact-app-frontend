@@ -1,0 +1,85 @@
+
+
+  <!-- Card container that binds all togather -->  
+<mat-card>  
+    <!-- Title of an Card -->  
+    <mat-card-title *ngIf="redirectFrom==='create'" class="demo-full-width mgr-left-45">  
+        Add Contact Details
+    </mat-card-title>  
+    <mat-card-title *ngIf="redirectFrom==='edit'" class="demo-full-width mgr-left-45">  
+        Edit Contact Details
+    </mat-card-title>  
+    <!-- Actual content starts from here -->  
+    <mat-card-content>  
+        <form [formGroup]="contactForm" (ngSubmit)="submit()">  
+            <mat-grid-list cols="4" rowHeight="100px">
+                <mat-grid-tile
+                    [colspan]="2"
+                    [rowspan]="1"
+                    >
+                    <mat-form-field class="demo-full-width">  
+                        <input formControlName="firstName" matInput placeholder="First Name"> 
+                        <mat-error>  
+                            <span *ngIf="!contactForm.get('firstName').valid && contactForm.get('firstName').touched">Please enter First Name !!!</span>  
+                        </mat-error>   
+                    </mat-form-field>  
+                    
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan]="2"
+                    [rowspan]="1"
+                    >
+                    <mat-form-field class="demo-full-width">  
+                        <input formControlName="lastName" matInput placeholder="Last Name"> 
+                        <mat-error>  
+                            <span *ngIf="!contactForm.get('lastName').valid && contactForm.get('lastName').touched">Please enter Last Name !!!</span>  
+                        </mat-error>   
+                    </mat-form-field>  
+                    
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan]="2"
+                    [rowspan]="1"
+                    >
+                    <mat-form-field class="demo-full-width">  
+                        <input formControlName="email" matInput placeholder="Email">  
+                        <mat-hint>use like : demo@demo.com</mat-hint>  
+                        <mat-error>  
+                            <span *ngIf="!contactForm.get('email').valid && contactForm.get('email').touched">Enter proper Email !!!</span>  
+                        </mat-error>  
+                    </mat-form-field>  
+                </mat-grid-tile>
+                <mat-grid-tile
+                    [colspan]="2"
+                    [rowspan]="1"
+                    >
+                    <mat-form-field class="demo-full-width">  
+                        <input type="number" formControlName="phoneNumber" matInput placeholder="Phone Number" [minLength]="10" [maxlength]="10"> 
+                        <mat-error>  
+                            <span *ngIf="!contactForm.get('phoneNumber').valid && contactForm.get('phoneNumber').touched">Please enter phone number !!!</span>  
+                        </mat-error>   
+                    </mat-form-field>  
+                </mat-grid-tile>
+                <!-- <mat-grid-tile
+                    [colspan]="2"
+                    [rowspan]="1"
+                    >
+                    <span>Status</span><br><br>  
+                        <mat-radio-group formControlName="status">  
+                            <mat-radio-button value="true">Active</mat-radio-button>  
+                            <mat-radio-button value="false">In-active</mat-radio-button>  
+                        </mat-radio-group>  
+                        <mat-error>  
+                            <span *ngIf="!contactForm.get('status').valid && contactForm.get('status').touched">Please select proper status !!!</span>  
+                        </mat-error>  
+                </mat-grid-tile> -->
+                <mat-grid-tile
+                    [colspan]="4"
+                    [rowspan]="1"
+                    >
+                    <button mat-raised-button color="accent" [disabled]="!contactForm.valid">Submit</button>  
+                </mat-grid-tile>
+              </mat-grid-list>
+        </form>  
+    </mat-card-content>  
+</mat-card>  
